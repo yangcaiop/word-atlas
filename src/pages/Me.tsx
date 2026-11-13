@@ -1,3 +1,4 @@
+import { AccountPanel } from "../account/AccountPanel";
 import { Download, RotateCcw, Upload } from "lucide-react";
 import { useMemo, useRef } from "react";
 import { useAtlas } from "../atlas/context";
@@ -54,6 +55,8 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
         <p className="eyebrow">我的</p>
         <h1 className="display">你的星空</h1>
       </header>
+
+      <AccountPanel />
 
       <section className="stat-strip">
         <div>
@@ -181,7 +184,7 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
 
         <section className="panel">
           <h3 className="eyebrow">数据</h3>
-          <p className="muted">进度只存在这台设备的浏览器里：没有账号，没有服务器。换设备时，导出备份再导入即可。</p>
+          <p className="muted">游客进度保存在本机；登录后会自动同步到账号。你也可以随时导出本地备份。</p>
           {saveError && <p className="warn-text">浏览器拒绝保存（可能是隐私模式或空间已满）。请尽快导出备份。</p>}
           <div className="data-actions">
             <button className="btn btn-ghost" onClick={download}>
@@ -194,7 +197,7 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
             <button
               className="btn btn-ghost btn-danger"
               onClick={() => {
-                if (confirm("确定清空这个词库的全部学习记录？此操作无法撤销，建议先导出备份。")) {
+                if (confirm("确定清空这个词库的全部学习记录？登录状态下会同步清空远程记录。此操作无法撤销，建议先导出备份。")) {
                   resetProgress();
                   toast("学习记录已清空");
                 }

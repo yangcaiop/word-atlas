@@ -23,7 +23,7 @@
 
 ---
 
-Word Atlas is an illustrated IELTS vocabulary app for Chinese-speaking learners. Connect words with scenes and pronunciation, practise active recall, and return to them with FSRS spaced repetition. No account required. Learning progress stays on your device.
+Word Atlas is an illustrated IELTS vocabulary app for Chinese-speaking learners. Connect words with scenes and pronunciation, practise active recall, and return to them with FSRS spaced repetition. No account required. Progress stays on your device; optional accounts enable remote sync.
 
 > **Version scope:** This repository contains the open-source foundation of Word Atlas and its dataset. The hosted website evolves separately and may have different features. The code and dataset here remain available under their respective MIT and CC BY 4.0 licenses.
 
@@ -62,15 +62,15 @@ Explore 19 topic groups, rotate and zoom the galaxy, and select a star to open i
 
 ## Learning loop
 
-| Step | What you do |
-| :--- | :--- |
-| **See** | Explore an illustration, bilingual definitions, two original examples, collocations and usage notes. |
-| **Hear** | Switch between UK and US pronunciation and listen to example sentences. A subset includes audio for the second example. |
-| **Recall** | Practise meaning-to-word, illustrated cloze, listening recognition and spelling. |
-| **Review** | Let FSRS schedule reviews based on your history. Only the first answer counts toward accuracy. |
-| **Keep** | Track progress in the galaxy, practise typing separately, and export or restore your local progress. |
+| Step       | What you do                                                                                                             |
+| :--------- | :---------------------------------------------------------------------------------------------------------------------- |
+| **See**    | Explore an illustration, bilingual definitions, two original examples, collocations and usage notes.                    |
+| **Hear**   | Switch between UK and US pronunciation and listen to example sentences. A subset includes audio for the second example. |
+| **Recall** | Practise meaning-to-word, illustrated cloze, listening recognition and spelling.                                        |
+| **Review** | Let FSRS schedule reviews based on your history. Only the first answer counts toward accuracy.                          |
+| **Keep**   | Track progress in the galaxy, practise typing separately, and export or restore your local progress.                    |
 
-**Local first.** Visited entries and media can be cached for offline use. Export a progress backup before moving to another device.
+**Local first.** Visited entries and media can be cached for offline use. Registration uploads guest progress; signing in replaces local progress with remote data. Changes upload automatically. Signing out clears local progress while preserving remote data. Local backups remain available.
 
 Listen to a sample: **abandon** — [UK](public/atlas/audio/uk/abandon.mp3) · [US](public/atlas/audio/us/abandon.mp3) · [Example](public/atlas/audio/ex/abandon.mp3).
 
@@ -93,6 +93,8 @@ npm run check:atlas  # Dataset and media validation
 npm run build        # Production build in dist/
 ```
 
+The optional API is in the sibling `word-atlas-api/` project and uses Express + MySQL. Configure the database, run `npm run db:migrate`, and start the API. Vite proxies `/api` to `http://127.0.0.1:3000`; override with `ATLAS_API_TARGET`. Guest mode works without the API.
+
 For a subpath deployment: `ATLAS_BASE=/words/ npm run build`. See the [deployment guide](docs/deployment.md).
 
 **Stack:** React 19 · TypeScript · Vite · ts-fsrs · WebGL2
@@ -101,12 +103,12 @@ For a subpath deployment: `ATLAS_BASE=/words/ npm run build`. See the [deploymen
 
 Use the app as it is, or build your own learning tools, Anki decks and research projects.
 
-| Resource | Repository edition | Download / documentation |
-| :--- | :--- | :--- |
-| Entries | **7,298**, CEFR A1–C2, 19 topics | [JSON](data/word-atlas.json) · [CSV](data/word-atlas.csv) |
-| Examples | **14,596**, everyday and IELTS contexts, with Chinese translations | [Schema](docs/dataset.md) |
-| Illustrations | **7,298**, 512 px WebP plus thumbnails | [Images](public/atlas/img/) |
-| Recordings | **22,905**, UK/US words and example sentences | [Audio](public/atlas/audio/) |
+| Resource      | Repository edition                                                 | Download / documentation                                  |
+| :------------ | :----------------------------------------------------------------- | :-------------------------------------------------------- |
+| Entries       | **7,298**, CEFR A1–C2, 19 topics                                   | [JSON](data/word-atlas.json) · [CSV](data/word-atlas.csv) |
+| Examples      | **14,596**, everyday and IELTS contexts, with Chinese translations | [Schema](docs/dataset.md)                                 |
+| Illustrations | **7,298**, 512 px WebP plus thumbnails                             | [Images](public/atlas/img/)                               |
+| Recordings    | **22,905**, UK/US words and example sentences                      | [Audio](public/atlas/audio/)                              |
 
 ```python
 import json
@@ -132,11 +134,11 @@ Please include the **word ID, reproduction steps and expected result** when repo
 
 ## License
 
-| Scope | License |
-| :--- | :--- |
-| Application code | [MIT](LICENSE) |
+| Scope                                              | License                                                                   |
+| :------------------------------------------------- | :------------------------------------------------------------------------ |
+| Application code                                   | [MIT](LICENSE)                                                            |
 | Vocabulary text, illustrations and word recordings | [CC BY 4.0](CONTENT_LICENSE.md); credit “Word Atlas contributors（词光）” |
-| Dependencies and fonts | Their respective licenses |
+| Dependencies and fonts                             | Their respective licenses                                                 |
 
 ---
 

@@ -23,7 +23,7 @@
 
 ---
 
-词光是一款以插画和语境为核心的雅思背词应用。看画面理解词义，听发音建立联系，再用主动回忆和间隔复习巩固记忆。无需账号，学习进度保存在自己的设备上。
+词光是一款以插画和语境为核心的雅思背词应用。看画面理解词义，听发音建立联系，再用主动回忆和间隔复习巩固记忆。无需登录即可使用，学习进度保存在自己的设备上；可选注册账号并自动同步到远程。
 
 > **版本说明**：这个仓库提供词光的开源基础版及配套数据集。在线网站独立迭代，功能与仓库可能不同；仓库里的代码和内容分别遵循下方的 MIT / CC BY 4.0 授权。
 
@@ -62,43 +62,40 @@
 
 ## 学习方式
 
-| 环节 | 你会做什么 |
-| :--- | :--- |
+| 环节     | 你会做什么                                                           |
+| :------- | :------------------------------------------------------------------- |
 | **看见** | 每个词配一幅插画、中英释义、两条原创例句，以及搭配、词族和用法提示。 |
-| **听见** | 切换英音、美音，听日常例句朗读；部分词条另含第二条例句录音。 |
-| **想起** | 看义选词、看图补句、听音辨词、拼写，逐步练习主动回忆。 |
-| **复习** | FSRS 根据学习记录安排复习，目标记忆率可调。只有首次作答计入正确率。 |
-| **积累** | 星图展示学习进度；打字练习独立统计；支持导出和恢复本地进度。 |
+| **听见** | 切换英音、美音，听日常例句朗读；部分词条另含第二条例句录音。         |
+| **想起** | 看义选词、看图补句、听音辨词、拼写，逐步练习主动回忆。               |
+| **复习** | FSRS 根据学习记录安排复习，目标记忆率可调。只有首次作答计入正确率。  |
+| **积累** | 星图展示学习进度；打字练习独立统计；支持导出和恢复本地进度。         |
 
-**本地优先。** 无需注册；看过的词条与媒体可缓存供离线使用。换设备前，请先导出进度备份。
+**本地优先。** 无需注册；看过的词条与媒体可缓存供离线使用。注册会保存当前进度，登录已有账号会使用远程进度覆盖本地；登录后自动上传变更，退出后清空本地进度。也可导出进度备份。
 
 <details>
 <summary><b>听发音、例句与环境声样本</b></summary>
 
+拿 _abandon_ 举例，点开就能听（在线播放）：
 
-
-拿 *abandon* 举例，点开就能听（在线播放）：
-
-| | |
-|---|---|
-| 🇬🇧 英音 | [abandon /əˈbændən/](https://0xlei.tech/words/atlas/audio/uk/abandon.mp3) |
-| 🇺🇸 美音 | [abandon /əˈbændən/](https://0xlei.tech/words/atlas/audio/us/abandon.mp3) |
+|             |                                                                                               |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| 🇬🇧 英音     | [abandon /əˈbændən/](https://0xlei.tech/words/atlas/audio/uk/abandon.mp3)                     |
+| 🇺🇸 美音     | [abandon /əˈbændən/](https://0xlei.tech/words/atlas/audio/us/abandon.mp3)                     |
 | 📖 例句朗读 | [We had to abandon our car in the snow.](https://0xlei.tech/words/atlas/audio/ex/abandon.mp3) |
 
 全部 7,298 个词都有英音、美音和例句朗读，还有 1,011 个重点词的第二条例句也配了朗读。
 
 ### 环境声与交互声音
 
-| | |
-|---|---|
-| 🎙 **开屏配音** | [「欢迎打开雅思大门」](https://0xlei.tech/words/sfx/splash-voice.mp3)：星尘汇聚成“词光”，大门打开 |
-| 🌌 **星图配音** | [「这是你的词汇星图。每学会一个词，就点亮一颗星。」](https://0xlei.tech/words/sfx/voice-galaxy-hello.mp3) |
-| 🎵 **星空音乐** | [一段可无缝循环的原创配乐](https://0xlei.tech/words/sfx/amb-stars.mp3)，默认陪你背词 |
+|                  |                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🎙 **开屏配音**   | [「欢迎打开雅思大门」](https://0xlei.tech/words/sfx/splash-voice.mp3)：星尘汇聚成“词光”，大门打开                                                                                                                                                                                                                                                    |
+| 🌌 **星图配音**  | [「这是你的词汇星图。每学会一个词，就点亮一颗星。」](https://0xlei.tech/words/sfx/voice-galaxy-hello.mp3)                                                                                                                                                                                                                                            |
+| 🎵 **星空音乐**  | [一段可无缝循环的原创配乐](https://0xlei.tech/words/sfx/amb-stars.mp3)，默认陪你背词                                                                                                                                                                                                                                                                 |
 | 🌧 **6 段环境声** | [雨天图书馆](https://0xlei.tech/words/sfx/amb-rain.mp3) · [清晨海岸](https://0xlei.tech/words/sfx/amb-sea.mp3) · [林间早晨](https://0xlei.tech/words/sfx/amb-forest.mp3) · [夜晚壁炉](https://0xlei.tech/words/sfx/amb-fire.mp3) · [远航船舱](https://0xlei.tech/words/sfx/amb-voyage.mp3) · [安静咖啡馆](https://0xlei.tech/words/sfx/amb-cafe.mp3) |
-| ✨ **界面音效** | 答对、答错、翻卡、打字、连胜、点亮星星……每个操作都有自己的声音；读单词时背景音会自动压低 |
+| ✨ **界面音效**  | 答对、答错、翻卡、打字、连胜、点亮星星……每个操作都有自己的声音；读单词时背景音会自动压低                                                                                                                                                                                                                                                             |
 
 全部素材都在仓库里：插画在 `public/atlas/img/`，录音在 `public/atlas/audio/`，这两类按 CC BY 4.0 开放；界面声音和配乐在 `public/sfx/`，随应用一起提供。
-
 
 </details>
 
@@ -121,6 +118,8 @@ npm run check:atlas  # 词库结构与媒体校验
 npm run build        # 构建到 dist/
 ```
 
+可选账号服务位于相邻 `word-atlas-api/`，使用 Express + MySQL；配置数据库、执行 `npm run db:migrate` 后启动服务。开发时 `/api` 默认代理到 `http://127.0.0.1:3000`，可设置 `ATLAS_API_TARGET`。游客模式不依赖 API。
+
 子路径部署：`ATLAS_BASE=/words/ npm run build`。完整说明见 [部署文档](docs/deployment.md)。
 
 **技术栈**：React 19 · TypeScript · Vite · ts-fsrs · WebGL2
@@ -129,12 +128,12 @@ npm run build        # 构建到 dist/
 
 不仅可以直接使用应用，也可以把词库用于自己的学习工具、Anki 牌组或研究项目。
 
-| 资源 | 开源版内容 | 入口 |
-| :--- | :--- | :--- |
-| 词条 | **7,298** 条，CEFR A1–C2、19 个话题 | [JSON](data/word-atlas.json) · [CSV](data/word-atlas.csv) |
-| 例句 | **14,596** 条，日常与雅思语境，附中文翻译 | [字段说明](docs/dataset.md) |
-| 插画 | **7,298** 幅，512 px WebP，另有缩略图 | [图片目录](public/atlas/img/) |
-| 录音 | **22,905** 段，英音、美音与例句朗读 | [音频目录](public/atlas/audio/) |
+| 资源 | 开源版内容                                | 入口                                                      |
+| :--- | :---------------------------------------- | :-------------------------------------------------------- |
+| 词条 | **7,298** 条，CEFR A1–C2、19 个话题       | [JSON](data/word-atlas.json) · [CSV](data/word-atlas.csv) |
+| 例句 | **14,596** 条，日常与雅思语境，附中文翻译 | [字段说明](docs/dataset.md)                               |
+| 插画 | **7,298** 幅，512 px WebP，另有缩略图     | [图片目录](public/atlas/img/)                             |
+| 录音 | **22,905** 段，英音、美音与例句朗读       | [音频目录](public/atlas/audio/)                           |
 
 ```python
 import json
@@ -153,10 +152,22 @@ b2_environment = [w for w in words if w["cefr"] == "B2" and w["topic"] == "envir
   "w": "principle",
   "uk": "/ˈprɪnsəpəl/",
   "us": "/ˈprɪnsəpəl/",
-  "senses": [{ "pos": "n.", "zh": "原则；行为准则", "en": "A belief or rule that guides decisions and behaviour." }],
+  "senses": [
+    {
+      "pos": "n.",
+      "zh": "原则；行为准则",
+      "en": "A belief or rule that guides decisions and behaviour."
+    }
+  ],
   "ex": [
-    { "en": "I refused the extra money as a matter of principle.", "zh": "出于原则，我拒绝了那笔额外的钱。" },
-    { "en": "The principle of equal opportunity should guide policies designed to improve access to higher education.", "zh": "…" }
+    {
+      "en": "I refused the extra money as a matter of principle.",
+      "zh": "出于原则，我拒绝了那笔额外的钱。"
+    },
+    {
+      "en": "The principle of equal opportunity should guide policies designed to improve access to higher education.",
+      "zh": "…"
+    }
   ],
   "col": ["in principle｜原则上", "basic principle｜基本原则"],
   "fam": ["principled (adj.)"],
@@ -184,11 +195,11 @@ b2_environment = [w for w in words if w["cefr"] == "B2" and w["topic"] == "envir
 
 ## 授权
 
-| 范围 | 许可 |
-| :--- | :--- |
-| 应用代码 | [MIT](LICENSE) |
+| 范围                     | 许可                                                                  |
+| :----------------------- | :-------------------------------------------------------------------- |
+| 应用代码                 | [MIT](LICENSE)                                                        |
 | 词库文本、插画与词条录音 | [CC BY 4.0](CONTENT_LICENSE.md)，署名 Word Atlas contributors（词光） |
-| 第三方依赖与字体 | 遵循各自许可，详见相应文件 |
+| 第三方依赖与字体         | 遵循各自许可，详见相应文件                                            |
 
 ---
 

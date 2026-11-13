@@ -2,9 +2,9 @@
 
 ## 数据去哪里
 
-词光没有账号、服务器端存储、统计或追踪。学习进度只保存在当前浏览器的 localStorage，可以在「我的」里导出为 JSON 备份。导入备份时会逐字段校验，畸形数据会被丢弃。
+词光支持游客使用和可选账号，不接入统计或追踪。游客进度保存在当前浏览器 localStorage；注册把当前进度保存到 MySQL，登录已有账号使用远程数据覆盖本地，登录后自动上传变更。退出注销当前会话并清空本地进度，远程数据保留。可在「我的」里导出 JSON 备份；远程快照经结构校验后才应用。
 
-Word Atlas has no accounts, server-side storage, analytics or tracking. Progress lives in the browser's localStorage and can be exported as JSON. Imported backups are validated field by field.
+Guest progress stays in localStorage. Optional accounts store progress in MySQL with HttpOnly session cookies. Registration uploads guest data; signing in replaces local progress; signing out clears local progress while preserving remote data. No analytics or tracking. Backups remain available.
 
 ## 凭据 / Credentials
 
@@ -17,3 +17,9 @@ Word Atlas has no accounts, server-side storage, analytics or tracking. Progress
 ## 报告问题 / Reporting
 
 发现安全问题请通过 GitHub 私密漏洞报告（Security → Report a vulnerability）联系维护者，不要公开贴出细节。
+
+## 账号服务
+
+密码使用随机盐 scrypt 哈希，数据库只保存会话令牌的 SHA-256 哈希；密码与凭证不进入进度快照或备份。生产使用 HTTPS 和 Secure Cookie。用户名密码注册不提供找回密码。MySQL 凭据只在服务端 .env 或部署环境中配置。
+
+写接口校验 JSON 与来源白名单，服务端由 Cookie 会话确定用户，并核对 X-Atlas-User。远程进度按用户和词库隔离，版本过旧返回冲突。API 响应使用 no-store，Service Worker 绕过 /api/。

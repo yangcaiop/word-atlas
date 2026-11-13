@@ -1,3 +1,4 @@
+import { sync, useSyncStatus } from "./account/sync";
 import { BookOpen, ChevronLeft, ChevronRight, Compass, Github, Keyboard, Moon, Search, Sun, User } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { AtlasContext, useAtlas, useEntry } from "./atlas/context";
@@ -48,6 +49,9 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const dataset = useStore((s) => s.settings.dataset);
   useTheme();
+  const syncStatus = useSyncStatus();
+  const atlasReady = atlas !== null;
+  useEffect(() => (atlasReady ? sync.start() : undefined), [atlasReady]);
 
   useEffect(() => {
     loadOpenAtlas().then(
@@ -87,6 +91,12 @@ export default function App() {
   return (
     <AtlasContext.Provider value={atlas}>
       <Shell privateAvailable={!!priv} />
+      {syncStatus.busy && (
+        <div className="account-busy" role="status" aria-live="polite">
+          <span className="spinner" />
+          <p>{syncStatus.message}</p>
+        </div>
+      )}
     </AtlasContext.Provider>
   );
 }

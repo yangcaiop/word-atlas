@@ -99,7 +99,25 @@ export default defineConfig({
       },
     },
   ],
-  server: { port: 5188, strictPort: true },
-  preview: { port: 5188, strictPort: true },
+  server: {
+    port: 5188,
+    strictPort: true,
+    proxy: {
+      "/api": {
+        target: process.env.ATLAS_API_TARGET || "http://127.0.0.1:3000",
+        changeOrigin: false,
+      },
+    },
+  },
+  preview: {
+    port: 5188,
+    strictPort: true,
+    proxy: {
+      "/api": {
+        target: process.env.ATLAS_API_TARGET || "http://127.0.0.1:3000",
+        changeOrigin: false,
+      },
+    },
+  },
   build: { chunkSizeWarningLimit: 600 },
 });

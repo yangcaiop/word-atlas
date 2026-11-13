@@ -1292,6 +1292,20 @@ code {
     max-width: none;
   }
 }
+.sheet-root-centered {
+  align-items: center;
+  padding: 16px;
+}
+.sheet-root-centered .sheet {
+  max-width: 480px;
+  max-height: calc(100dvh - 32px);
+  border-radius: var(--r-lg);
+  padding: 32px 24px;
+  animation: sheet-pop 0.38s var(--ease);
+}
+.sheet-root-centered .sheet-grip {
+  display: none;
+}
 @keyframes sheet-pop {
   from {
     transform: translateY(16px) scale(0.98);
@@ -4119,4 +4133,51 @@ a:hover .mark-needle,
 }
 .streak-panel .mini-stats div:first-child dd {
   color: var(--ochre);
+}
+
+/* ---------- optional account and remote sync ---------- */
+.account-panel {
+  margin-bottom: 24px;
+}
+.account-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.account-status {
+  margin-top: 12px;
+}
+.account-time {
+  font-size: 12px;
+}
+.account-form {
+  display: grid;
+  gap: 16px;
+  padding-top: 16px;
+}
+.account-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+.account-form input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  padding: 12px;
+  background: var(--paper);
+}
+.account-busy {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  background: var(--paper);
+  padding: 24px;
+  text-align: center;
 }

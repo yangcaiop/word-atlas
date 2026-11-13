@@ -1,0 +1,4 @@
+interface:
+  display_name: "DIY 需求对齐与文档"
+  short_description: "通过问答对齐需求、改动范围和业务规则，形成可验收的开发依据"
+  default_prompt: "使用 $diy-requirements 通过问答对齐这个需求，明确改动范围和业务规则，按项目模板完善需求文档；已有确认内容直接沿用。"
