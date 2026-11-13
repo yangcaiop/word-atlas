@@ -1,5 +1,7 @@
 # 部署 / Deployment
 
+阿里云 ESA Pages + OSS 部署使用 `npm run build:pages`、`esa.jsonc` 和边缘函数，完整步骤见 [ESA Pages 部署说明](esa-pages.md)。此模式将词库媒体存放在 OSS，Pages 仅发布应用和词库 JSON。
+
 `npm run build` 生成纯静态站点 `dist/`，可以放到任何静态托管（Nginx、Cloudflare Pages、Vercel、GitHub Pages）。
 
 ## 子路径

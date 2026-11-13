@@ -21,11 +21,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TOP = {
     "README.md", "README.en.md", "LICENSE", "CONTENT_LICENSE.md", "CONTRIBUTING.md", "SECURITY.md",
-    ".gitignore", "package.json", "package-lock.json", "tsconfig.json", "vite.config.ts", "index.html",
+    ".gitignore", ".nvmrc", ".env.pages.example", "esa.jsonc", "package.json", "package-lock.json", "tsconfig.json", "vite.config.ts", "index.html",
 }
-SCRIPTS = {"check-atlas.mjs", "render-cards.mjs", "record-demo.mjs", "package_public.py"}
+SCRIPTS = {"check-atlas.mjs", "render-cards.mjs", "record-demo.mjs", "package_public.py", "build-pages.mjs", "upload-oss.mjs"}
 ATLAS_SCRIPTS = {"common.py", "gen_text.py", "gen_images.py", "gen_brand.py", "gen_word_audio.py", "gen_sentence_audio.py", "gen_sfx.py", "gen_galaxy_audio.sh", "fix_blocked.py", "build_atlas.py", "build_sfx.py"}
-TEXT = {".ts", ".tsx", ".css", ".svg", ".md", ".json", ".mjs", ".js", ".py", ".html", ".csv", ".yml", ".webmanifest", ""}
+TEXT = {".ts", ".tsx", ".css", ".svg", ".md", ".json", ".jsonc", ".mjs", ".js", ".py", ".html", ".csv", ".yml", ".webmanifest", ""}
 PATTERNS = {
     "API credential pattern": re.compile(rb"\b(?:sk[_-][A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{25,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[A-Z0-9]{16}|xi-[A-Za-z0-9]{20,})\b"),
     "private home path": re.compile(rb"(?:/Users/|/home/)[A-Za-z0-9_.-]+/|[A-Za-z]:\\Users\\"),
@@ -39,12 +39,16 @@ PATTERNS = {
 def allowed(rel: Path) -> bool:
     p = rel.parts
     name = rel.as_posix()
-    if any(x in {".local", ".git", "node_modules", "dist", "output", "__pycache__", ".claude", ".playwright-cli"} or x.startswith(".env") for x in p):
+    if name == ".env.pages.example":
+        return True
+    if any(x in {".local", ".git", "node_modules", "dist", "dist-pages", "output", "__pycache__", ".claude", ".playwright-cli"} or x.startswith(".env") for x in p):
         return False
     if len(p) == 1:
         return name in TOP
     if p[0] == "src":
         return rel.suffix in {".ts", ".tsx", ".css", ".svg"}
+    if p[0] == "edge":
+        return len(p) == 2 and rel.suffix in {".js", ".mjs"} and p[1] != "config.generated.js"
     if p[0] == "scripts":
         return (len(p) == 2 and p[1] in SCRIPTS) or (len(p) == 3 and p[1] == "atlas" and p[2] in ATLAS_SCRIPTS)
     if p[0] == "docs":

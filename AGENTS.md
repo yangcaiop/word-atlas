@@ -4,7 +4,7 @@
 
 ## 1. 项目边界与技术栈
 
-- 当前是 React 19 + TypeScript 5.9 + Vite 6 的静态单页应用，使用 npm 和 ES Modules。开发环境要求 Node.js 20+。
+- 当前是 React 19 + TypeScript 5.9 + Vite 6 的单页应用，使用 npm 和 ES Modules。开发和 Pages 构建使用 Node.js 22。
 - 保持可选账号、本地优先、无追踪的产品方向。游客无需服务端；注册、登录与同步使用相邻 `word-atlas-api/` 的 Express + MySQL 服务。
 - 沿用函数组件、React Hooks、Context、自定义外部状态仓库、Hash 路由和原生 CSS；遵守 `CONTRIBUTING.md`，不引入状态管理或 UI 框架依赖。
 - 复习调度使用 `ts-fsrs`，图标使用 `lucide-react`，星图使用原生 WebGL2 并提供 Canvas 2D 降级。
@@ -111,6 +111,9 @@
 - 网页运行不需要 API key。生成脚本仅从环境变量或 `ATLAS_SECRETS` 指定的仓库外文件读取凭据；禁止使用会暴露到浏览器包中的 `VITE_*` 变量保存密钥，也不得在源码、日志或截图中写入真实凭据。
 - 新词库文本、插画、词条录音记录来源并满足 CC BY 4.0 再分发要求，保留现有署名；代码及第三方资源分别遵循其许可。
 - 公开导出走 `scripts/package_public.py` 的白名单与扫描；新增发布文件时核对是否纳入白名单。该脚本会清理目标目录，不作为日常测试命令运行。
+- ESA Pages 配置位于 `esa.jsonc`，边缘函数位于 `edge/`。`build:pages` 生成不含词库媒体的 `dist-pages/` 与只含公开来源的 `edge/config.generated.js`；生成文件不提交。普通 `build` 保留原有完整静态产物及子路径支持。
+- 边缘函数仅转发 `/api` 和白名单媒体路径。API 响应禁止共享缓存，必须透传会话 Cookie、Origin 和 X-Atlas-User；OSS 媒体请求不携带账号凭据。Range、HEAD、条件请求旁路完整对象缓存。ESA Cache API 使用全局 cache.get/put，缓存键要求 HTTP，但实际回源必须 HTTPS；不要读取或设置 ESA 禁止访问的 Host、Connection 等头。
+- OSS 上传使用 `scripts/upload-oss.mjs` 和用户在 ossutil 中配置的身份，仅上传公开媒体与内容许可。深圳 ECS 可选择内网上传 Endpoint；Pages 回源只能使用公网地址。修改 Bucket 前缀时同步修改上传目标与回源基地址，参见 `docs/esa-pages.md`。
 
 ## 9. 常用命令与验证要求
 
@@ -120,9 +123,12 @@
 | --------------------------------------------- | -------------------------------------------------------------------------------- |
 | `npm ci`                                      | 按锁文件安装依赖。                                                               |
 | `npm run dev`                                 | 启动 Vite，默认 `http://localhost:5188`，端口被占用时直接报错。                  |
-| `npm test`                                    | 使用 Node Test Runner + `tsx` 运行 `src/**/*.test.ts`。                          |
+| `npm test`                                    | 使用 Node Test Runner + `tsx` 运行前端及 `edge/` 代理行为测试。                  |
 | `npm run check:atlas`                         | 检查网页词库计数、ID、分块顺序、结构和媒体文件；不验证释义正确性或下载数据同步。 |
 | `npm run build`                               | 执行 `tsc -b` 严格类型检查和 Vite 生产构建，输出 `dist/`。                       |
+| `npm run build:pages`                         | 生成 ESA Pages 产物与公开回源配置，并检查静态文件数量及大小限制。                |
+| `npm run upload:oss -- --dry-run`             | 只检查公开媒体并打印上传计划，不连接 OSS。                                       |
+| `npm run upload:oss`                          | 通过已配置的 ossutil 上传公开媒体到指定 OSS 前缀。                               |
 | `ATLAS_BASE=/words/ npm run build`            | 验证子路径构建；资源、路由或部署配置变更时还需预览验证。                         |
 | `npm run preview`                             | 在 5188 端口预览生产构建；先停止占用该端口的开发服务。                           |
 | `npx --no-install prettier --check AGENTS.md` | 检查本规范格式；检查其他文件时替换为本次修改的路径。                             |

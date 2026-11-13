@@ -1,0 +1,9 @@
+{
+  "name": "word-atlas-client",
+  "entry": "./edge/index.js",
+  "installCommand": "npm ci --registry=https://registry.npmmirror.com/ --no-audit --no-fund",
+  "buildCommand": "npm run build:pages",
+  "assets": {
+    "directory": "./dist-pages",
+  },
+}

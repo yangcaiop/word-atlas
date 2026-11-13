@@ -84,9 +84,10 @@ function localMedia(
     res.end();
   }
 }
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   // Deploy under a sub-path with ATLAS_BASE=/words/ npm run build
   base: process.env.ATLAS_BASE || "/",
+  publicDir: mode === "pages" ? false : "public",
   plugins: [
     react(),
     {
@@ -119,5 +120,8 @@ export default defineConfig({
       },
     },
   },
-  build: { chunkSizeWarningLimit: 600 },
-});
+  build: {
+    outDir: mode === "pages" ? "dist-pages" : "dist",
+    chunkSizeWarningLimit: 600,
+  },
+}));

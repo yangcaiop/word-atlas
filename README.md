@@ -101,7 +101,7 @@
 
 ## 本地运行
 
-需要 **Node.js 20+** 和 npm。仓库含完整图片与录音，首次下载可能较久。
+需要 **Node.js 22** 和 npm。仓库含完整图片与录音，首次下载可能较久。
 
 ```bash
 git clone --depth 1 https://github.com/designfuchen/word-atlas.git
@@ -121,6 +121,8 @@ npm run build        # 构建到 dist/
 可选账号服务位于相邻 `word-atlas-api/`，使用 Express + MySQL；配置数据库、执行 `npm run db:migrate` 后启动服务。开发时 `/api` 默认代理到 `http://127.0.0.1:3000`，可设置 `ATLAS_API_TARGET`。游客模式不依赖 API。
 
 子路径部署：`ATLAS_BASE=/words/ npm run build`。完整说明见 [部署文档](docs/deployment.md)。
+
+阿里云 ESA Pages：使用 `npm run build:pages`，配合 OSS 存放词库媒体，并由边缘函数转发账号 API。配置和上线步骤见 [ESA Pages + OSS 部署](docs/esa-pages.md)。
 
 **技术栈**：React 19 · TypeScript · Vite · ts-fsrs · WebGL2
 

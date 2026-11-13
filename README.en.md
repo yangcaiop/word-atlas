@@ -76,7 +76,7 @@ Listen to a sample: **abandon** — [UK](public/atlas/audio/uk/abandon.mp3) · [
 
 ## Quick start
 
-Requires **Node.js 20+** and npm. This repository includes the full image and audio collection, so the initial download can take time.
+Requires **Node.js 22** and npm. This repository includes the full image and audio collection, so the initial download can take time.
 
 ```bash
 git clone --depth 1 https://github.com/designfuchen/word-atlas.git

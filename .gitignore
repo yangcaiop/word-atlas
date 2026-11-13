@@ -1,9 +1,12 @@
 node_modules/
 dist/
+dist-pages/
+edge/config.generated.js
 .local/
 .env
 .env.*
 !.env.example
+!.env.pages.example
 output/
 *.zip
 .DS_Store
